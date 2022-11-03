@@ -32,6 +32,7 @@ cmake -G "Visual Studio 16 2019" -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=%buil
 -Daws-crt-cpp_DIR=%GAMEKIT_AWSSDK_PATH%\install\x86_64\windows\%build_type%\lib\aws-crt-cpp\cmake ^
 -Daws-cpp-sdk-cloudformation_DIR=%GAMEKIT_AWSSDK_PATH%\install\x86_64\windows\%build_type%\lib\cmake\aws-cpp-sdk-cloudformation ^
 -Daws-cpp-sdk-cognito-idp_DIR=%GAMEKIT_AWSSDK_PATH%\install\x86_64\windows\%build_type%\lib\cmake\aws-cpp-sdk-cognito-idp ^
+-Daws-cpp-sdk-gamelift_DIR=%GAMEKIT_AWSSDK_PATH%\install\x86_64\windows\%build_type%\lib\cmake\aws-cpp-sdk-gamelift ^
 -Daws-cpp-sdk-sts_DIR=%GAMEKIT_AWSSDK_PATH%\install\x86_64\windows\%build_type%\lib\cmake\aws-cpp-sdk-sts ^
 -Daws-cpp-sdk-secretsmanager_DIR=%GAMEKIT_AWSSDK_PATH%\install\x86_64\windows\%build_type%\lib\cmake\aws-cpp-sdk-secretsmanager ^
 -Daws-cpp-sdk-ssm_DIR=%GAMEKIT_AWSSDK_PATH%\install\x86_64\windows\%build_type%\lib\cmake\aws-cpp-sdk-ssm ^

@@ -53,7 +53,7 @@ else()
 endif()
 
 # AWS SDK and CRT dependencies
-find_package(AWSSDK REQUIRED COMPONENTS apigateway cloudformation cognito-idp lambda s3 ssm secretsmanager sts)
+find_package(AWSSDK REQUIRED COMPONENTS apigateway cloudformation cognito-idp lambda s3 ssm secretsmanager sts gamelift)
 
 find_package(yaml-cpp)
 
@@ -67,6 +67,7 @@ add_subdirectory(aws-gamekit-achievements)
 add_subdirectory(aws-gamekit-authentication)
 add_subdirectory(aws-gamekit-user-gameplay-data)
 add_subdirectory(aws-gamekit-game-saving)
+add_subdirectory(aws-gamekit-gamelift)
 
 if (DEFINED GTEST_SRC)
     add_subdirectory(tests)
