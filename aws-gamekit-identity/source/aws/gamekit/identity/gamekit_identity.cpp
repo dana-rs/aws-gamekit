@@ -354,6 +354,7 @@ unsigned int GameKit::Identity::Identity::GetUser(const DISPATCH_RECEIVER_HANDLE
     Aws::String responseFbRefId;
     Aws::String responseUserName;
     Aws::String responseUserEmail;
+    Aws::String responseAccessToken;
 
     const JsonView view = value.View().GetObject("data");
 
@@ -370,6 +371,7 @@ unsigned int GameKit::Identity::Identity::GetUser(const DISPATCH_RECEIVER_HANDLE
     responseFbExternalId = view.GetString(GameKit::Identity::USER_FB_EXTERNAL_ID);
     responseFbRefId = view.GetString(GameKit::Identity::USER_FB_REF_ID);
     responseUserName = view.GetString(GameKit::Identity::USER_NAME);
+    responseAccessToken = m_sessionManager->GetToken(GameKit::TokenType::AccessToken);
 
     // Get email address from cognito
     CognitoModel::GetUserRequest getUserRequest;
@@ -400,7 +402,8 @@ unsigned int GameKit::Identity::Identity::GetUser(const DISPATCH_RECEIVER_HANDLE
                                         responseFbExternalId.c_str(),
                                         responseFbRefId.c_str(),
                                         responseUserName.c_str(),
-                                        responseUserEmail.c_str() };
+                                        responseUserEmail.c_str(),
+                                        responseAccessToken.c_str() };
 
     if ( nullptr != receiver && nullptr != responseCallback)
     {

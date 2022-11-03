@@ -156,6 +156,8 @@ namespace GameKit
          * @brief Players email address.
          */
         const char* email;
+
+        const char* accessToken;
     };
 
     /**
