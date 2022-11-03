@@ -13,6 +13,7 @@
 using namespace Aws::Http;
 using namespace Aws::Utils;
 using namespace Aws::Utils::Json;
+using namespace GameKit::ClientSettings::GameLift;
 using namespace GameKit::GameLift;
 using namespace GameKit::Utils::HttpClient;
 
@@ -63,6 +64,43 @@ GameLift::~GameLift()
 #pragma endregion
 
 #pragma region Public Methods
+
+unsigned int GameLift::CreateGameSession(GameLiftCreateSession gameLiftCreateSession, DISPATCH_RECEIVER_HANDLE createSessionReceiver, FuncCreateSessionResponseCallback createSessionCallback) {
+    if (!m_sessionManager->AreSettingsLoaded(FeatureType::UserGameplayData))
+    {
+        return GAMEKIT_ERROR_SETTINGS_MISSING;
+    }
+
+    const std::string uri = m_sessionManager->GetClientSettings()[SETTINGS_GAME_LIFT_BASE_URL];
+    const std::string& idToken = m_sessionManager->GetToken(GameKit::TokenType::IdToken);
+
+    if (idToken.empty())
+    {
+        Logging::Log(m_logCb, Level::Info, "UserGameplayData::AddUserGameplayData() No user is currently logged in.");
+        return GAMEKIT_ERROR_NO_ID_TOKEN;
+    }
+
+    auto request = CreateHttpRequest(ToAwsString(uri), HttpMethod::HTTP_POST, Aws::Utils::Stream::DefaultResponseStreamFactoryMethod);
+
+    setAuthorizationHeader(request);
+
+    JsonValue payload;
+    gameLiftCreateSession.ToJson(payload);
+
+    std::shared_ptr<Aws::IOStream> payloadStream = Aws::MakeShared<Aws::StringStream>("CreateGameLiftSessionBody");
+    Aws::String serialized = payload.View().WriteCompact();
+    *payloadStream << serialized;
+
+    request->AddContentBody(payloadStream);
+    request->SetContentType("application/json");
+    request->SetContentLength(StringUtils::to_string(serialized.size()));
+
+    createSessionCallback(createSessionReceiver, "1", "2");
+    //RequestResult result = m_customHttpClient->MakeRequest(GameLiftOperationType::Write, false, userGameplayDataBundle.bundleName, "", request, HttpResponseCode::CREATED, m_clientSettings.MaxRetries);
+
+    return GAMEKIT_ERROR_GAME_LIFT_CREATE_SESSION_ERROR;
+
+}
 
 #pragma endregion
 

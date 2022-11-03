@@ -126,6 +126,8 @@ namespace GameKit
     // Standard warning status codes (0x11400-0x116FF)
     static const unsigned int GAMEKIT_WARNING_SECRETSMANAGER_SECRET_NOT_FOUND = 0x11400;
 
+    // Game Lift status codes ()
+    static const unsigned int GAMEKIT_ERROR_GAME_LIFT_CREATE_SESSION_ERROR = 0x12000;
     // Error messages
     static const char* ERR_INVALID_GAMEKIT_PROVIDER = "Invalid Provider";
     static const char* ERR_STACK_CURRENT_STATUS_UNDEPLOYED = "UNDEPLOYED";

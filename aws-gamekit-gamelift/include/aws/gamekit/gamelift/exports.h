@@ -19,6 +19,8 @@
  */
 typedef void* GAMEKIT_GAME_LIFT_INSTANCE_HANDLE;
 
+typedef void(*FuncCreateSessionResponseCallback)(DISPATCH_RECEIVER_HANDLE dispatchReceiver, const char* responseKey, const char* responseValue);
+
 extern "C"
 {
     /**

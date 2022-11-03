@@ -47,6 +47,11 @@ namespace GameKit
         {
             static const std::string SETTINGS_GAME_SAVING_BASE_URL = "gamesaving_api_gateway_base_url";
         }
+
+        namespace GameLift
+        {
+            static const std::string SETTINGS_GAME_LIFT_BASE_URL = "gamelift_api_gateway_base_url";
+        }
     }
 
     namespace Authentication

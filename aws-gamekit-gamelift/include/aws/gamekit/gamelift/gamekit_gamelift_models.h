@@ -12,8 +12,18 @@ namespace Aws {
 
 namespace GameKit
 {
+
+    struct GameLiftCreateSession
+    {
+        const char* const* gamePropertyKeys;
+        const char* const* gamePropertyValues;
+        size_t numKeys;
+
+        void GAMEKIT_API ToJson(Aws::Utils::Json::JsonValue& json) const;
+    };
+
     /**
-     * @brief Settings for the User Gameplay Data API client.
+     * @brief Settings for the GameLift API client.
      *
      */
     struct GameLiftClientSettings

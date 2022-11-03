@@ -26,6 +26,7 @@
 #include <aws/gamekit/core/awsclients/default_clients.h>
 #include <aws/gamekit/core/utils/ticker.h>
 #include <aws/gamekit/core/utils/validation_utils.h>
+#include <aws/gamekit/gamelift/exports.h>
 #include <aws/gamekit/gamelift/gamekit_gamelift_client.h>
 #include <aws/gamekit/gamelift/gamekit_gamelift_models.h>
 
@@ -39,6 +40,9 @@ namespace GameKit
     public:
         IGameLiftFeature() {};
         virtual ~IGameLiftFeature() {};
+
+        virtual unsigned int CreateGameSession(GameLiftCreateSession gameLiftCreateSession, DISPATCH_RECEIVER_HANDLE createSessionReceiver, FuncCreateSessionResponseCallback createSessionCallback) = 0;
+
 
     };
 
@@ -83,6 +87,8 @@ namespace GameKit
             void SetClientSettings(const GameLiftClientSettings& settings);
 
             virtual ~GameLift() override;
+
+            virtual unsigned int CreateGameSession(GameLiftCreateSession gameLiftCreateSession, DISPATCH_RECEIVER_HANDLE createSessionReceiver, FuncCreateSessionResponseCallback createSessionCallback) override;
         };
     }
 }
